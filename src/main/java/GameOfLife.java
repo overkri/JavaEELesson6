@@ -126,9 +126,10 @@ public class GameOfLife {
      *
      * @param arrayOfLife   primal array which has been read from input file
      * @param numberOfMoves how many iterations will recieve method
-     * @return modified array - arrayOfLife
+     * @return modified array - temporaryArray
      */
     private int[][] moveMulti(int[][] arrayOfLife, int numberOfMoves) {
+        int[][] temporaryArray = new int[arrayOfLife.length][arrayOfLife.length];
         for (int i = 0; i < numberOfMoves; i++) {
             int[][] temporaryArray = new int[arrayOfLife.length][arrayOfLife.length];
             GoLThread Thread1 = new GoLThread(arrayOfLife, 0, arrayOfLife.length / 2, 0, arrayOfLife.length / 2, temporaryArray);
@@ -139,8 +140,7 @@ public class GameOfLife {
             Thread2.start();
             Thread3.start();
             Thread4.start();
-            arrayOfLife = temporaryArray;
         }
-        return arrayOfLife;
+        return temporaryArray;
     }
 }
